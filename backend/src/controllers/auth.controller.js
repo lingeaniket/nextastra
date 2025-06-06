@@ -22,7 +22,7 @@ const login = async (req, res) => {
             LEFT JOIN tblroles 
                 ON tblusers.roleId = tblroles.id 
             LEFT JOIN tblpermissions p
-                ON tblusers.roleId = p.roleId
+                ON tblusers.roleId = p.roleId AND p.canRead = 1
             WHERE tblusers.email = ?`,
         [email],
     );
@@ -48,4 +48,9 @@ const login = async (req, res) => {
     return res.status(200).json({ message: "Login successful", role: user.roleName, username: user.name, modules: user.modules });
 };
 
-export { login };
+const logout = async (req, res) => {
+    res.cookie("accessToken", null, { ...cookiesOptions, maxAge: 1 });
+    return res.json({ message: "logout successful" });
+};
+
+export { login, logout };

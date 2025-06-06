@@ -11,7 +11,6 @@ const generateAccessToken = (userid, role) => jwt.sign({ userid, role }, secretK
 
 const authToken = (req, res, next) => {
     const { accessToken } = req.cookies;
-    // console.log(accessToken);
     if (!accessToken) {
         return res.status(401).json({ error: "Unauthorized" });
     }

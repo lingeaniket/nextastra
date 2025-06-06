@@ -27,24 +27,35 @@ const MainAuthRouter = () => {
             .get("http://localhost:3000/api/auth", { withCredentials: true })
             .then((response) => {
                 const data = response.data;
-                setTimeout(() => {
-                    setLoading(false);
-                }, 400);
                 setLoggedIn(data.status);
                 setUsername(data.username);
                 setUsermodules(data.modules);
+                setTimeout(() => {
+                    setLoading(false);
+                }, 500);
             })
             .catch(() => {
+                console.log("login");
                 navigate("/login");
                 setTimeout(() => {
                     setLoading(false);
-                }, 400);
+                }, 500);
                 setLoggedIn(false);
             });
-        // setLoading(true);
-        //
     }, []);
-    return <>{loading ? <>Loading</> : <Outlet />}</>;
+    return (
+        <>
+            {loading ? (
+                <div style={{ width: "100%", height: "100dvh" }} className='d-flex align-items-center justify-content-center'>
+                    <div class='spinner-border text-warning' role='status'>
+                        <span class='visually-hidden'>Loading...</span>
+                    </div>
+                </div>
+            ) : (
+                <Outlet />
+            )}
+        </>
+    );
 };
 
 export default MainAuthRouter;

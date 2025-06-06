@@ -1,12 +1,20 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 import { Link, Outlet } from "react-router-dom";
+import { setUserLogin } from "../../../Features/user.slice";
 
 const HomeModule = () => {
+    const dispatch = useDispatch();
     const username = useSelector((state) => state.userstore.username);
-    // const role = useSelector((state) => state.userstore.userrole);
     const usermodules = useSelector((state) => state.userstore.usermodules);
+
+    const handleLogout = () => {
+        axios.post("http://localhost:3000/api/auth/logout", {}, { withCredentials: true }).then(() => {
+            dispatch(setUserLogin(false));
+        });
+    };
     return (
         <>
             <header className='header'>
@@ -27,7 +35,9 @@ const HomeModule = () => {
                                             </div>
                                         </div>
                                         <div className='col-6'>
-                                            <button className='btn btn-primary'>Logout</button>
+                                            <button className='btn btn-primary' onClick={handleLogout}>
+                                                Logout
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -37,7 +47,6 @@ const HomeModule = () => {
                 </div>
             </header>
             <aside className='sidebar'>
-                {usermodules}
                 <ul>
                     {usermodules.includes("dashboard") && (
                         <li>
@@ -73,8 +82,6 @@ const HomeModule = () => {
             </main>
         </>
     );
-
-    // return <div>Dashboard</div>;
 };
 
 export default HomeModule;

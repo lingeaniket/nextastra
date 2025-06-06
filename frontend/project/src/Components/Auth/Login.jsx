@@ -23,6 +23,7 @@ const Login = () => {
                 dispatch(setUserName(response.data));
                 dispatch(setUserModules(response.data));
                 navigate("/");
+                console.log("login called");
             })
             .catch((error) => {
                 console.log(error);
