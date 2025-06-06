@@ -1,0 +1,95 @@
+.header {
+    background: #4b164c;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.sidebar {
+    width: 200px;
+    position: fixed;
+    top: 58px;
+    left: 0;
+    height: 100dvh;
+    padding: 10px 5px;
+    background-color: #f8e7f6;
+}
+
+body {
+    background-color: #f5f5f5 !important;
+}
+
+.sidebar li {
+    list-style: none;
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    transition: background-color ease-in-out 0.3s, border ease-in-out 0.3s;
+    cursor: pointer;
+}
+
+.sidebar li:hover {
+    background-color: #4b164c4d;
+    /* border-color: #4b164c78; */
+}
+
+.sidebar li > a {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.sidebar ul {
+    padding: 0;
+    margin: 0;
+}
+
+li > a {
+    text-decoration: none;
+    color: #000;
+    display: block;
+    /* background-color: ; */
+}
+
+main {
+    margin-left: 200px;
+    margin-top: 58px;
+}
+
+table.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+}
+table.styled-table {
+    border-radius: 5px 5px 0 0;
+    /* border-collapse: separate; Required for border-radius to work */
+}
+
+table.styled-table > thead {
+    background-color: #4b164c;
+    color: white;
+}
+table.styled-table th,
+table.styled-table td {
+    padding: 10px 15px;
+}
+
+.go-back a {
+    text-decoration: none;
+    color: #4b164c;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.go-back i {
+    transition: transform ease-in-out 0.3s;
+    display: inline-block;
+}
+.go-back a:hover i {
+    transform: translateX(-10px);
+}
